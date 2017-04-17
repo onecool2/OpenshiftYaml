@@ -1,7 +1,7 @@
 package routers
 
 import (
-	"github.com/my-web-ap/controllers"
+	"my-web-ap/controllers"
 	"github.com/astaxie/beego"
 )
 

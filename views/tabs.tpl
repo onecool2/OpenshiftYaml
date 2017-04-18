@@ -25,7 +25,7 @@
     <li><a href="#tabs-5">Create a PVC</a></li>
   </ul>
   <div id="tabs-0">
-    <form action="index" method="post">
+    <form action="index?tabType=deployment" method="post">
     <p>Add description about Deployment.</p>
 	apiVersion: <input type="text" name="apiVersion" value="v1">
         <br><br>
@@ -39,7 +39,7 @@
         <br><br>
 	tags: <input type="text" name="tags" value="latest">
         <br><br>
-   <input type="submit" value="Submit">
+   <input type="submit" name="submit_deployment" value="submit">
    </form>
   </div>
 

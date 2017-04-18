@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="/static/css/jquery-ui.css">
   <script src="static/js/jquery-1.12.4.js"></script>
   <script src="static/js/jquery-ui.js"></script>
+  <script src="static/js/addService.js"></script>
   <script>
   $( function() {
     $( "#tabs" ).tabs();
@@ -17,15 +18,15 @@
  
 <div id="tabs">
   <ul>
-    <li><a href="#tabs-0">Create a Template</a></li>
-    <li><a href="#tabs-1">Create a POD</a></li>
-    <li><a href="#tabs-2">Create a Service</a></li>
-    <li><a href="#tabs-3">Create a route</a></li>
-    <li><a href="#tabs-4">Create a PV</a></li>
-    <li><a href="#tabs-5">Create a PVC</a></li>
+    <li><a href="#tabsTemplate">Create a Template</a></li>
+    <li><a href="#tabsPOD">Create a POD</a></li>
+    <li><a href="#tabsService">Create a Service</a></li>
+    <li><a href="#tabsRoute">Create a route</a></li>
+    <li><a href="#tabsPV">Create a PV</a></li>
+    <li><a href="#tabsPVC">Create a PVC</a></li>
   </ul>
-  <div id="tabs-0">
-    <form action="index?tabType=deployment" method="post">
+  <div id="tabsTemplate">
+    <form action="index?tabType=template" method="post">
     <p>Add description about Deployment.</p>
 	apiVersion: <input type="text" name="apiVersion" value="v1">
         <br><br>
@@ -39,36 +40,45 @@
         <br><br>
 	tags: <input type="text" name="tags" value="latest">
         <br><br>
-   <input type="submit" name="submit_deployment" value="submit">
+   <input type="submit" name="submit_template" value="submit">
    </form>
   </div>
 
-  <div id="tabs-1">
+  <div id="tabsPOD">
+    <form action="index?tabType=template" method="post">
     <p>Add description about POD.</p>
-	First name:<br>
-    	<input type="text" name="firstname" value="Mickey">
-	<br>
-	Last name:<br>
-        <input type="text" name="lastname" value="Mouse">
-    <br><br>
-   <input type="submit" value="Submit">
+	apiVersion: <input type="text" name="apiVersion" value="v1">
+        <br><br>
+	kind: <input type="text" name="kind" value="Template">
+        <br><br>
+	name: <input type="text" name="name" value="app's name">
+        <br><br>
+	description: <input type="text" name="describtion" value="app's description">
+        <br><br>
+	iconClass: <input type="text" name="iconClass" value="icon">
+        <br><br>
+	tags: <input type="text" name="tags" value="latest">
+        <br><br>    <br><br>
+   <input type="submit" name="submit_POD" value="submit">
    </form>
   </div>
-  <div id="tabs-2">
+  <div id="tabsService">
+    <form action="index?tabType=service" method="post">
     <p>Add description about Service.</p>
-    <form action="index" method="post">
-    <input list="object" name="object">
-    <datalist id="object">
-      <option value={{.Email}}>
-      <option value="Service">
-      <option value="Route">
-      <option value="PV">
-      <option value="PVC">
-   </datalist>
-   <input type="submit">
+        <table id="service">
+
+        </table>
+        <br><br> 
+	<input type="button" value="add a new service" onclick="addService()" />
+        <br>
+        <input type="text" id="delTextId" />
+        <input type="button" value="delete the latest ports" onclick="delService()" />
+
+        <br><br> 
+   <input type="submit" name="submit_POD" value="submit">   
    </form>
   </div>
-  <div id="tabs-3">
+  <div id="tabsRoute">
     <p>Add description about route.</p>
     <form action="index" method="post">
     <input list="object" name="object">
@@ -82,7 +92,7 @@
    <input type="submit">
    </form>
   </div>
-  <div id="tabs-4">
+  <div id="tabsPV">
     <p>Add description about PV.</p>
     <form action="index" method="post">
     <input list="object" name="object">
@@ -96,7 +106,7 @@
    <input type="submit">
    </form>
   </div>
-  <div id="tabs-5">
+  <div id="tabsPVC">
     <p>Add description about PVC.</p>
     <form action="index" method="post">
     <input list="object" name="object">

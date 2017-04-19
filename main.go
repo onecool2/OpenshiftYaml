@@ -1,8 +1,8 @@
 package main
 
 import (
-	//_ "github.com/my-web-ap/routers"
-	_ "my-web-ap/routers"
+	//_ "github.com/K8sYamlUI/routers"
+	_ "K8sYamlUI/routers"
 	"github.com/astaxie/beego"
 )
 

@@ -1,0 +1,200 @@
+var podMetaLabelNum = 1;
+var podMetaAnnotationNum = 1;
+var pod;
+var podNum;
+function addPOD() {
+	newpod=new POD();//init();
+	newpod.init();
+}
+
+function POD() {
+	this.apiversion;
+	this.kind;
+	this.metadata;
+	this.meta_name;
+	this.meta_namespace;
+	this.meta_labels;
+	this.meta_labels_name;
+	this.meta_annotations;
+	this.meta_annotations_name;
+	this.pod;
+	//this.prototype.podNum;
+
+
+	this.get_metadata_index = function (){
+		return rowIndex = document.getElementById("delPODTextId").value;
+	}
+
+	this.add_metadata_labels_name = function (){
+		var myannotations= document.getElementById("myannotations");
+		//	var rowOfmeta_label_name = pod.insertRow(podMetaLabelNum + 14);
+		var rowOfmeta_label_name = this.pod.insertRow(podMetaLabelNum);
+		var cellmeta_label_name = rowOfmeta_label_name.insertCell();
+		cellmeta_label_name.innerText = "-name:";
+		cellmeta_label_name = rowOfmeta_label_name.insertCell();
+		cellmeta_label_name.innerHTML = "<input type='text' name='pod_metadata_labels_name' + podMetaLabelNum value = 'podMetaLabelNum'>";
+		podMetaLabelNum++;
+	}
+
+	this.add_metadata_annotations_name = function (){
+		var rowOfmeta_annotations_name = this.pod.insertRow();
+		var cellmeta_annotations_name = rowOfmeta_annotations_name.insertCell();
+		cellmeta_annotations_name.innerText = "-name:";
+		cellmeta_annotations_name = rowOfmeta_annotations_name.insertCell();
+		cellmeta_annotations_name.innerHTML = "<input type='text' name='pod_metadata_annotations_name' + podNum value = 'new'>";
+	}
+
+	this.add_spec_container = function (pod) {
+		var rowOfspec_containers_name = pod.insertRow();
+		var rowOfspec_containers_image = pod.insertRow();
+		var rowOfspec_containers_imagePullPolicy = pod.insertRow();
+		var rowOfspec_containers_command = pod.insertRow();
+		var rowOfspec_containers_workingDir = pod.insertRow();
+		var rowOfspec_containers_ports_name = pod.insertRow();
+
+		add_spec_container_volumeMounts(pod)
+			add_spec_container_ports(pod)
+			add_spec_container_env(pod)
+
+	}
+
+	this.add_spec_container_volumeMounts = function (pod) {
+		var rowOfspec_containers_volumeMounts_name = pod.insertRow();
+		var rowOfspec_containers_volumeMounts_mountPath = pod.insertRow();
+		var rowOfspec_containers_volumeMounts_readOnly = pod.insertRow();
+	}
+
+	this.add_spec_container_ports = function (pod) {
+		var rowOfspec_containers_ports_name = pod.insertRow();
+		var rowOfspec_containers_ports_containerPort = pod.insertRow();
+		var rowOfspec_containers_ports_hostPort = pod.insertRow();
+		var rowOfspec_containers_ports_protocol = pod.insertRow();
+
+	}
+	this.add_spec_container_env = function (pod) {
+		var rowOfspec_containers_env_name = pod.insertRow();
+		var rowOfspec_containers_env_value = pod.insertRow();
+
+	}
+	this.add_spec_container_resources= function (pod) {
+		var rowOfspec_containers_resources_limits_cpu = pod.insertRow();
+		var rowOfspec_containers_resources_limits_memory = pod.insertRow();
+
+	}
+
+	this.add_spec_volumes = function(pod) {
+		var rowOfspec_volumes_name = pod.insertRow();
+		var rowOfspec_volumes_ = pod.insertRow();
+		var rowOfspec_containers_resources_limits = pod.insertRow();
+		var rowOfspec_env_value = pod.insertRow();
+
+	}
+
+
+	this.init = function() {
+		//this.pod = document.getElementbyId(id);
+		this.pod = document.getElementById("pod");
+		var rowOfStartLine = this.pod.insertRow();
+		//apiVersion
+		var rowOfapiversion = this.pod.insertRow();
+		var rowOfkind = this.pod.insertRow();
+		var rowOfmetadata = this.pod.insertRow();
+		var rowOfmeta_name = this.pod.insertRow();
+		var rowOfmeta_namespace = this.pod.insertRow();
+		var rowOflabels = this.pod.insertRow();
+		var rowOfannotations = this.pod.insertRow();
+		this.add_metadata_labels_name();
+		this.add_metadata_annotations_name();
+		//spec
+		//	add_spec_container(pod)
+		//env
+		//        add_spec_container_env(pod)
+		//resources
+		//	add_spec_container_resources(pod)
+		//volumes
+		//        addPOD_spec_volumes(pod)
+
+		//	var rowOfspec_restartPolicy = pod.insertRow();
+		//	var rowOfspec_dnsPolicycontainers_name = pod.insertRow();
+		//	var rowOfspec_nodeSelector = pod.insertRow();
+		//	var rowOfspec_imagePullSecrets = pod.insertRow();
+		//	//var rowOfEndLine = pod.insertRow();
+
+		var cellStartLine = rowOfStartLine.insertCell();
+		var cellapiversion = rowOfapiversion.insertCell();
+		var cellkind = rowOfkind.insertCell();
+		var cellmetadata = rowOfmetadata.insertCell();
+		var cellmeta_name = rowOfmeta_name.insertCell();
+		var cellmeta_namespace = rowOfmeta_namespace.insertCell();
+		var celllabels = rowOflabels.insertCell();
+		var cellannotations = rowOfannotations.insertCell();
+		//	var cellDescription = rowOfDescription.insertCell();
+		//	var cellPortName = rowOfPortName.insertCell();
+		//	var cellPort = rowOfPort.insertCell();
+		//	var cellTargetPort = rowOfTargetPort.insertCell();
+		//	var cellSelectName = rowOfSelectName.insertCell();
+		//	//var cellEndLine = rowOfEndLine.insertCell();
+
+		cellStartLine.innerText = "-----------------POD:" + podNum + "---------------";
+		cellapiversion.innerText = "apiversion:";
+		cellkind.innerText = "kind:";
+		cellmetadata.innerText = "metadata:";
+		cellmeta_name.innerText = "name:";
+		cellmeta_namespace.innerText = "namespace:";
+		celllabels.innerHTML = "<label id='mylable' onclick='addPOD_metadata_labels_name()'>labels:</label>";
+		cellannotations.innerHTML = "<label id='myannotations' onclick='addPOD_metadata_annotations_name()'>annotations:</label>";
+		//	cellName.innerText = "Name:";
+		//	cellDescription.innerText = "Description:";
+		//	cellPortName.innerText = "PortName:";
+		//	cellPort.innerText = "Port:";
+		//	cellTargetPort.innerText = "TargetPort:";
+		//	cellSelectName.innerText = "SelectName:";
+		//cellEndLine.innerText = "-------------------------"
+		podNum++;
+
+		//        cellStartLine = rowOfStartLine.insertCell();
+		cellapiversion = rowOfapiversion.insertCell();
+		cellkind = rowOfkind.insertCell();
+		cellmeta_name = rowOfmeta_name.insertCell();
+		cellmeta_namespace = rowOfmeta_namespace.insertCell();
+
+		//	cellDescription = rowOfDescription.insertCell();
+		//	cellPortName = rowOfPortName.insertCell();
+		//	cellPort = rowOfPort.insertCell();
+		//	cellTargetPort = rowOfTargetPort.insertCell();
+		//	cellSelectName = rowOfSelectName.insertCell();
+		//cellEndLine = rowOfEndLine.insertCell();
+
+		cellapiversion.innerHTML = "<input type='text' name='podApiversion' + podNum value = 'new'>";
+		cellkind.innerHTML = "<input type='text' name='podKind' + podNum value = 'new'>";
+		cellmeta_name.innerHTML = "<input type='text' name='podName' + podNum value = 'new'>";
+		cellmeta_namespace.innerHTML = "<input type='text' name='podName' + podNum value = 'new'>";
+		//	cellDescription.innerHTML = "<input type='text' name='podDescription' + podNum value = 'new'>";
+		//	cellPortName.innerHTML = "<input type='text' name='podPortName' + podNum value = 'new'>";
+		//	cellPort.innerHTML = "<input type='text' name='podPort' + podNum value = 'new'>";
+		//	cellTargetPort.innerHTML = "<input type='text' name='podTargetPort' + podNum value = 'new'>";
+		//	cellSelectName.innerHTML = "<input type='text' name='podSelectName' + podNum value = 'new'>";
+
+		//	apiVersion: <input type="text" name="apiVersion" value="v1">
+		//        <br><br>
+		//	kind: <input type="text" name="kind" value="Service">
+		//        <br><br>
+		//	name: <input type="text" name="name" value="app's name">
+		//       <br><br>
+		//	description: <input type="text" name="describtion" value="app's description">
+		//       <br><br>
+		//	    port name: <input type="text" name="ports_name" value=" ">
+		//	    port: <input type="text" name="ports_port" value=" ">
+		//	    targetPort: <input type="text" name="ports_targetPort" value=" ">
+	}
+
+	this.delRoute = function () {
+		var rowIndex = document.getElementById("delPODTextId").value;
+//		this.pod = document.getElementById("pod");
+		this.pod.deleteRow(rowIndex-1);
+		this.pod.deleteRow(rowIndex-1);
+		this.pod.deleteRow(rowIndex-1);
+		this.pod.deleteRow(rowIndex-1);
+		//podNum--
+	}
+}

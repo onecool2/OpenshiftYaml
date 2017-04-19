@@ -1,13 +1,18 @@
 var podMetaLabelNum = 1;
 var podMetaAnnotationNum = 1;
 var pod;
-var podNum;
+var podNum = 0;
+var podArray = new Array();
 function addPOD() {
-	newpod=new POD();//init();
-	newpod.init();
+	newpod=new POD(podNum);//init();
+	podArray[podNum] = newpod;
+	podArray[podNum].init(podNum);
+	podNum++;
+	console.log(podNum);
 }
 
 function POD() {
+	this.Num;
 	this.apiversion;
 	this.kind;
 	this.metadata;
@@ -20,15 +25,10 @@ function POD() {
 	this.pod;
 	//this.prototype.podNum;
 
-
-	this.get_metadata_index = function (){
-		return rowIndex = document.getElementById("delPODTextId").value;
-	}
-
 	this.add_metadata_labels_name = function (){
-		var myannotations= document.getElementById("myannotations");
-		//	var rowOfmeta_label_name = pod.insertRow(podMetaLabelNum + 14);
-		var rowOfmeta_label_name = this.pod.insertRow(podMetaLabelNum);
+		var rowIndex = document.getElementById("metadata_labels" + this.Num).rowIndex;
+		console.log(rowIndex);
+		var rowOfmeta_label_name = this.pod.insertRow(rowIndex);
 		var cellmeta_label_name = rowOfmeta_label_name.insertCell();
 		cellmeta_label_name.innerText = "-name:";
 		cellmeta_label_name = rowOfmeta_label_name.insertCell();
@@ -37,7 +37,9 @@ function POD() {
 	}
 
 	this.add_metadata_annotations_name = function (){
-		var rowOfmeta_annotations_name = this.pod.insertRow();
+		var rowIndex = document.getElementById("metadata_annotations" + this.Num).rowIndex;
+		console.log(rowIndex);
+		var rowOfmeta_annotations_name = this.pod.insertRow(rowIndex);
 		var cellmeta_annotations_name = rowOfmeta_annotations_name.insertCell();
 		cellmeta_annotations_name.innerText = "-name:";
 		cellmeta_annotations_name = rowOfmeta_annotations_name.insertCell();
@@ -91,8 +93,8 @@ function POD() {
 	}
 
 
-	this.init = function() {
-		//this.pod = document.getElementbyId(id);
+	this.init = function(num) {
+		this.Num = num;
 		this.pod = document.getElementById("pod");
 		var rowOfStartLine = this.pod.insertRow();
 		//apiVersion
@@ -103,9 +105,7 @@ function POD() {
 		var rowOfmeta_namespace = this.pod.insertRow();
 		var rowOflabels = this.pod.insertRow();
 		var rowOfannotations = this.pod.insertRow();
-		this.add_metadata_labels_name();
-		this.add_metadata_annotations_name();
-		//spec
+			//spec
 		//	add_spec_container(pod)
 		//env
 		//        add_spec_container_env(pod)
@@ -135,14 +135,18 @@ function POD() {
 		//	var cellSelectName = rowOfSelectName.insertCell();
 		//	//var cellEndLine = rowOfEndLine.insertCell();
 
-		cellStartLine.innerText = "-----------------POD:" + podNum + "---------------";
+		cellStartLine.innerText = "-----------------POD:" + this.Num + "---------------";
 		cellapiversion.innerText = "apiversion:";
 		cellkind.innerText = "kind:";
 		cellmetadata.innerText = "metadata:";
 		cellmeta_name.innerText = "name:";
 		cellmeta_namespace.innerText = "namespace:";
-		celllabels.innerHTML = "<label id='mylable' onclick='addPOD_metadata_labels_name()'>labels:</label>";
-		cellannotations.innerHTML = "<label id='myannotations' onclick='addPOD_metadata_annotations_name()'>annotations:</label>";
+		console.log(this.Num);
+		celllabels.innerHTML = "<label id='metadata_labels" + this.Num + "'>labels:</label>";
+		//celllabels.innerHTML = "<label id='metadata_labels" + this.Num + "' onclick='this.add_metadata_labels_name()'>labels:</label>";
+		cellannotations.innerHTML = "<label id='metadata_annotations" + this.Num + "' onclick='this.add_metadata_annotations_name()'>annotations:</label>";
+
+
 		//	cellName.innerText = "Name:";
 		//	cellDescription.innerText = "Description:";
 		//	cellPortName.innerText = "PortName:";
@@ -150,7 +154,7 @@ function POD() {
 		//	cellTargetPort.innerText = "TargetPort:";
 		//	cellSelectName.innerText = "SelectName:";
 		//cellEndLine.innerText = "-------------------------"
-		podNum++;
+		//podNum++;
 
 		//        cellStartLine = rowOfStartLine.insertCell();
 		cellapiversion = rowOfapiversion.insertCell();
@@ -165,10 +169,12 @@ function POD() {
 		//	cellSelectName = rowOfSelectName.insertCell();
 		//cellEndLine = rowOfEndLine.insertCell();
 
-		cellapiversion.innerHTML = "<input type='text' name='podApiversion' + podNum value = 'new'>";
-		cellkind.innerHTML = "<input type='text' name='podKind' + podNum value = 'new'>";
-		cellmeta_name.innerHTML = "<input type='text' name='podName' + podNum value = 'new'>";
-		cellmeta_namespace.innerHTML = "<input type='text' name='podName' + podNum value = 'new'>";
+		cellapiversion.innerHTML = "<input type='text' id='podApiversion" + this.Num + "'value ='" +this.Num+ "'>";
+		cellkind.innerHTML = "<input type='text' id='podKind" + this.Num + "'value ='" + this.Num +"'>";
+		cellmeta_name.innerHTML = "<input type='text' id='podName" + this.Num +"'value = 'new'>";
+		cellmeta_namespace.innerHTML = "<input type='text' id='podNamespace" + this.Num + "'value = 'new'>";
+		this.add_metadata_labels_name();
+		this.add_metadata_annotations_name();
 		//	cellDescription.innerHTML = "<input type='text' name='podDescription' + podNum value = 'new'>";
 		//	cellPortName.innerHTML = "<input type='text' name='podPortName' + podNum value = 'new'>";
 		//	cellPort.innerHTML = "<input type='text' name='podPort' + podNum value = 'new'>";
@@ -188,13 +194,20 @@ function POD() {
 		//	    targetPort: <input type="text" name="ports_targetPort" value=" ">
 	}
 
-	this.delRoute = function () {
-		var rowIndex = document.getElementById("delPODTextId").value;
+	this.delPOD = function (Num) {
+		var rowIndex = document.getElementById("podApiversion" + Num).value;
+		
+		console.log(rowIndex);
 //		this.pod = document.getElementById("pod");
 		this.pod.deleteRow(rowIndex-1);
 		this.pod.deleteRow(rowIndex-1);
 		this.pod.deleteRow(rowIndex-1);
 		this.pod.deleteRow(rowIndex-1);
-		//podNum--
+		podNum--;
+		console.log(podNum);
 	}
+}
+function delPOD(){	
+	podArray[podNum - 1].delPOD(podNum - 1);
+	console.log(podNum);
 }

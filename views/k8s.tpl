@@ -16,7 +16,7 @@
   } );
   </script>
 </head>
-<body>
+<body onload="addPOD()">
  
 <div id="tabs">
   <ul>

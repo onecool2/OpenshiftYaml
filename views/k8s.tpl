@@ -28,6 +28,7 @@
     <li><a href="#tabsConfigMap">ConfigMap</a></li>
     <li><a href="#tabsJob">Job</a></li>
     <li><a href="#tabsPersistentVolume">PV</a></li>
+    <li><a href="#tabsPVC">PVC</a></li>
   </ul>
   <div id="tabsPOD">
     <form action="k8s?tabType=pod" method="post">
@@ -58,12 +59,14 @@
         </tr>
         <tr id="metadata_labels_tr">
 		<td>
-        	labels: <label name="metadata_labels" onclick="add_metadata_labels_name()" label/> 
+        	labels: <label id="metadata_labels"  label/> 
+		<input type="button" value="add a new anotations name" onclick="add_metadata_labels_name()" />
 		</td>
         </tr>
         <tr id="metadata_annotations_tr"> 
 		<td>
-       		 annotations: <input type="label" name="annotations" onclick="add_metadata_annotations_name()" label/>
+       		 annotations: <label name="annotations" label/>
+		<input type="button" value="add a new anotations name" onclick="add_metadata_annotations_name()" />
 		</td>
         </tr>
 	<tr>
@@ -78,11 +81,7 @@
 	</tr>
         </table>
         <br><br> 
-	<input type="button" value="add a new POD" onclick="add_metadata_labels_name()" />
         <br>
-	<input type="button" value="add a new anotations" onclick="add_metadata_annotations_name()" />
-        <input type="text" id="delPODTextId" />
-        <input type="button" value="delete the latest service" onclick="delPOD()" />
         <br><br> 
    	<input type="submit" name="submit_POD" value="submit">   
    </form>
@@ -141,7 +140,7 @@
    </form>
   </div>
  
-  <div id="tabsPV">
+  <div id="tabsPersistentVolume">
     <p>Add description about PV.</p>
     <form action="k8s" method="post">
     <input list="object" name="object">
@@ -179,8 +178,6 @@
 <a class="email" href="mailto:{{.Email}}">{{.Email}}</a>
 -->
 </div>
- 
-<br><br> 
 <input type="submit">
 </body>
 </html>

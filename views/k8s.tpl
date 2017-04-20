@@ -16,7 +16,6 @@
   } );
   </script>
 </head>
-<body onload="addPOD()">
  
 <div id="tabs">
   <ul>
@@ -32,13 +31,56 @@
   </ul>
   <div id="tabsPOD">
     <form action="k8s?tabType=pod" method="post">
-    	<p>Add description about template.</p>
         <table id="pod">
-
+        <tr>
+		<td> apiVersion:  <input type="text" name="apVersion" value="v1"/>
+		</td>
+	</tr>
+        <tr>
+		<td>
+		kind: <input type="text" id="kind" value="Pod"/>
+		</td>
+	</tr>
+        <tr>
+		<td>
+        	metadata: <label name="metadata" label/> 	
+		</td>
+        </tr>
+        <tr>
+		<td>
+        	name: <input type="text" name="metadata_name" value="PodName"/>
+		</td>
+        </tr>
+        <tr>
+		<td>
+        	namespace: <input type="text" name="metadata_name" value="Default"/>
+		</td>
+        </tr>
+        <tr id="metadata_labels_tr">
+		<td>
+        	labels: <label name="metadata_labels" onclick="add_metadata_labels_name()" label/> 
+		</td>
+        </tr>
+        <tr id="metadata_annotations_tr"> 
+		<td>
+       		 annotations: <input type="label" name="annotations" onclick="add_metadata_annotations_name()" label/>
+		</td>
+        </tr>
+	<tr>
+		<td>
+	spec: <label name="spec" label/>
+		</td>
+        </tr>
+	<tr>
+		<td>
+	containers: <label name="containers" label/>
+		</td>
+	</tr>
         </table>
         <br><br> 
-	<input type="button" value="add a new POD" onclick="addPOD()" />
+	<input type="button" value="add a new POD" onclick="add_metadata_labels_name()" />
         <br>
+	<input type="button" value="add a new anotations" onclick="add_metadata_annotations_name()" />
         <input type="text" id="delPODTextId" />
         <input type="button" value="delete the latest service" onclick="delPOD()" />
         <br><br> 

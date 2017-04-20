@@ -11,6 +11,29 @@ function addPOD() {
 	console.log(podNum);
 }
 
+function add_metadata_labels_name (){
+		pod = document.getElementById("pod");
+		var rowIndex = document.getElementById("metadata_labels_tr").rowIndex;
+		console.log(rowIndex);
+		var rowOfmeta_label_name = pod.insertRow(rowIndex + 1);
+		var cellmeta_label_name = rowOfmeta_label_name.insertCell(0);
+		cellmeta_label_name.innerText = "-name:";
+		cellmeta_label_name = rowOfmeta_label_name.insertCell(1);
+		cellmeta_label_name.innerHTML = "<input type='text' name='pod_metadata_labels_name' + podMetaLabelNum value = 'podMetaLabelNum1'>";
+		podMetaLabelNum++;
+}
+
+function add_metadata_annotations_name (){
+		pod = document.getElementById("pod");
+		var rowIndex = document.getElementById("metadata_annotations_tr").rowIndex;
+		console.log(rowIndex);
+		var rowOfmeta_annotations_name = pod.insertRow(rowIndex + 1);
+		var cellmeta_annotations_name = rowOfmeta_annotations_name.insertCell();
+		cellmeta_annotations_name.innerText = "-name:";
+		cellmeta_annotations_name = rowOfmeta_annotations_name.insertCell();
+		cellmeta_annotations_name.innerHTML = "<input type='text' name='pod_metadata_annotations_name' + podNum value = 'new'>";
+	}
+
 function POD() {
 	this.Num;
 	this.apiversion;
@@ -25,26 +48,8 @@ function POD() {
 	this.pod;
 	//this.prototype.podNum;
 
-	this.add_metadata_labels_name = function (){
-		var rowIndex = document.getElementById("metadata_labels" + this.Num).rowIndex;
-		console.log(rowIndex);
-		var rowOfmeta_label_name = this.pod.insertRow(rowIndex);
-		var cellmeta_label_name = rowOfmeta_label_name.insertCell();
-		cellmeta_label_name.innerText = "-name:";
-		cellmeta_label_name = rowOfmeta_label_name.insertCell();
-		cellmeta_label_name.innerHTML = "<input type='text' name='pod_metadata_labels_name' + podMetaLabelNum value = 'podMetaLabelNum'>";
-		podMetaLabelNum++;
-	}
+	
 
-	this.add_metadata_annotations_name = function (){
-		var rowIndex = document.getElementById("metadata_annotations" + this.Num).rowIndex;
-		console.log(rowIndex);
-		var rowOfmeta_annotations_name = this.pod.insertRow(rowIndex);
-		var cellmeta_annotations_name = rowOfmeta_annotations_name.insertCell();
-		cellmeta_annotations_name.innerText = "-name:";
-		cellmeta_annotations_name = rowOfmeta_annotations_name.insertCell();
-		cellmeta_annotations_name.innerHTML = "<input type='text' name='pod_metadata_annotations_name' + podNum value = 'new'>";
-	}
 
 	this.add_spec_container = function (pod) {
 		var rowOfspec_containers_name = pod.insertRow();
@@ -142,9 +147,9 @@ function POD() {
 		cellmeta_name.innerText = "name:";
 		cellmeta_namespace.innerText = "namespace:";
 		console.log(this.Num);
-		celllabels.innerHTML = "<label id='metadata_labels" + this.Num + "'>labels:</label>";
+		//celllabels.innerHTML = "<label id='metadata_labels" + this.Num + "'>labels:</label>";
 		//celllabels.innerHTML = "<label id='metadata_labels" + this.Num + "' onclick='this.add_metadata_labels_name()'>labels:</label>";
-		cellannotations.innerHTML = "<label id='metadata_annotations" + this.Num + "' onclick='this.add_metadata_annotations_name()'>annotations:</label>";
+		//cellannotations.innerHTML = "<label id='metadata_annotations" + this.Num + "' onclick='this.add_metadata_annotations_name()'>annotations:</label>";
 
 
 		//	cellName.innerText = "Name:";
@@ -170,11 +175,12 @@ function POD() {
 		//cellEndLine = rowOfEndLine.insertCell();
 
 		cellapiversion.innerHTML = "<input type='text' id='podApiversion" + this.Num + "'value ='" +this.Num+ "'>";
+		cellapiversion.innerHTML = "<input type='text' id='podApiversion" + this.Num + "'value ='" +this.Num+ "'>";
 		cellkind.innerHTML = "<input type='text' id='podKind" + this.Num + "'value ='" + this.Num +"'>";
 		cellmeta_name.innerHTML = "<input type='text' id='podName" + this.Num +"'value = 'new'>";
 		cellmeta_namespace.innerHTML = "<input type='text' id='podNamespace" + this.Num + "'value = 'new'>";
-		this.add_metadata_labels_name();
-		this.add_metadata_annotations_name();
+		//this.add_metadata_labels_name();
+		//this.add_metadata_annotations_name();
 		//	cellDescription.innerHTML = "<input type='text' name='podDescription' + podNum value = 'new'>";
 		//	cellPortName.innerHTML = "<input type='text' name='podPortName' + podNum value = 'new'>";
 		//	cellPort.innerHTML = "<input type='text' name='podPort' + podNum value = 'new'>";
@@ -195,8 +201,10 @@ function POD() {
 	}
 
 	this.delPOD = function (Num) {
-		var rowIndex = document.getElementById("podApiversion" + Num).value;
-		
+		var rowIndex = document.getElementById("pod").length;
+		//var rowIndex = document.getElementById("podName" + Num).rowIndex;
+		//var rowIndex = document.getElementById("metadata_labels0").rowIndex;
+		alert (rowIndex);
 		console.log(rowIndex);
 //		this.pod = document.getElementById("pod");
 		this.pod.deleteRow(rowIndex-1);

@@ -2,6 +2,7 @@ var podMetaLabelNum = 1;
 var podMetaAnnotationNum = 1;
 var pod;
 var podNum = 0;
+var containerNum=0;
 var podArray = new Array();
 function addPOD() {
 	newpod=new POD(podNum);//init();
@@ -9,6 +10,32 @@ function addPOD() {
 	podArray[podNum].init(podNum);
 	podNum++;
 	console.log(podNum);
+}
+
+function add_spec_container (){
+	pod = document.getElementById("pod");
+	var rowIndex = document.getElementById("spec_containers_tr").rowIndex;
+	console.log(rowIndex);
+	var rowOfspec_container_name = pod.insertRow(rowIndex + 1);
+	var cellspec_container_name = rowOfspec_container_name.insertCell();
+	cellspec_container_name.innerText = "-name:";
+	cellspec_container_name = rowOfspec_container_name.insertCell();
+	cellspec_container_name.innerHTML = "<input type='text' name='pod_spec_container_name' + containerNum value = 'container Num'>";
+	
+	var rowOfspec_container_image = pod.insertRow(rowIndex + 2);
+	var cellspec_container_image = rowOfspec_container_image.insertCell();
+	cellspec_container_image.innerText = "image:";
+	cellspec_container_image = rowOfspec_container_image.insertCell();
+	cellspec_container_image.innerHTML = "<input type='text' name='pod_spec_container_image' + containerNum value = 'container Num'>";
+
+	var rowOfspec_container_imagePullPolicy = pod.insertRow(rowIndex + 3);
+	var cellspec_container_imagePullPolicy = rowOfspec_container_imagePullPolicy.insertCell();
+	cellspec_container_imagePullPolicy.innerText = "imagePullPolicy:";
+	cellspec_container_imagePullPolicy = rowOfspec_container_imagePullPolicy.insertCell();
+	cellspec_container_imagePullPolicy.innerHTML = "<input type='text' name='pod_spec_container_imagePullPolicy' + containerNum value = 'container Num'>";
+
+
+	containerNum++;
 }
 
 function add_metadata_labels_name (){
@@ -24,15 +51,15 @@ function add_metadata_labels_name (){
 }
 
 function add_metadata_annotations_name (){
-		pod = document.getElementById("pod");
-		var rowIndex = document.getElementById("metadata_annotations_tr").rowIndex;
-		console.log(rowIndex);
-		var rowOfmeta_annotations_name = pod.insertRow(rowIndex + 1);
-		var cellmeta_annotations_name = rowOfmeta_annotations_name.insertCell();
-		cellmeta_annotations_name.innerText = "-name:";
-		cellmeta_annotations_name = rowOfmeta_annotations_name.insertCell();
-		cellmeta_annotations_name.innerHTML = "<input type='text' name='pod_metadata_annotations_name' + podNum value = 'new'>";
-	}
+	pod = document.getElementById("pod");
+	var rowIndex = document.getElementById("metadata_annotations_tr").rowIndex;
+	console.log(rowIndex);
+	var rowOfmeta_annotations_name = pod.insertRow(rowIndex + 1);
+	var cellmeta_annotations_name = rowOfmeta_annotations_name.insertCell();
+	cellmeta_annotations_name.innerText = "-name:";
+	cellmeta_annotations_name = rowOfmeta_annotations_name.insertCell();
+	cellmeta_annotations_name.innerHTML = "<input type='text' name='pod_metadata_annotations_name' + podNum value = 'new'>";
+}
 
 function POD() {
 	this.Num;
@@ -51,19 +78,19 @@ function POD() {
 	
 
 
-	this.add_spec_container = function (pod) {
-		var rowOfspec_containers_name = pod.insertRow();
-		var rowOfspec_containers_image = pod.insertRow();
-		var rowOfspec_containers_imagePullPolicy = pod.insertRow();
-		var rowOfspec_containers_command = pod.insertRow();
-		var rowOfspec_containers_workingDir = pod.insertRow();
-		var rowOfspec_containers_ports_name = pod.insertRow();
+//	this.add_spec_container = function (pod) {
+///		var rowOfspec_containers_name = pod.insertRow();
+//		var rowOfspec_containers_image = pod.insertRow();
+//		var rowOfspec_containers_imagePullPolicy = pod.insertRow();
+//		var rowOfspec_containers_command = pod.insertRow();
+///		var rowOfspec_containers_workingDir = pod.insertRow();
+//		var rowOfspec_containers_ports_name = pod.insertRow();
+//
+//		add_spec_container_volumeMounts(pod)
+///			add_spec_container_ports(pod)
+//			add_spec_container_env(pod)
 
-		add_spec_container_volumeMounts(pod)
-			add_spec_container_ports(pod)
-			add_spec_container_env(pod)
-
-	}
+//	}
 
 	this.add_spec_container_volumeMounts = function (pod) {
 		var rowOfspec_containers_volumeMounts_name = pod.insertRow();

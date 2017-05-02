@@ -69,14 +69,50 @@
 		<input type="button" value="add a new anotations name" onclick="add_metadata_annotations_name()" />
 		</td>
         </tr>
-	<tr>
+	<tr id="spec_tr">
 		<td>
 	spec: <label name="spec" label/>
 		</td>
         </tr>
+	<tr id="spec_containers_tr">
+		<td>
+		containers: <label name="spec_containers" label/>
+		<input type="button" value="add a new container" onclick="add_spec_container()" />
+		</td>
+	</tr>
 	<tr>
 		<td>
-	containers: <label name="containers" label/>
+	env: <label name="env" label/>
+		</td>
+	</tr>
+	<tr>
+		<td>
+	resources: <label name="resources" label/>
+		</td>
+	</tr>
+	<tr>
+		<td>
+	volumes:: <label name="volumes" label/>
+		</td>
+	</tr>
+	<tr>
+		<td>
+       	restartPolicy: <input type="text" name="restartPolicy" value="Default"/>
+		</td>
+	</tr>
+	<tr>
+		<td>
+       	dnsPolicy: <input type="text" name="dnsPolicy" value="Default"/>
+		</td>
+	</tr>
+	<tr>
+		<td>
+       	nodeSelector: <input type="text" name="nodeSelector" value="Default"/>
+		</td>
+	</tr>
+	<tr>
+		<td>
+       	imagePullSecrets: <input type="text" name="imagePullSecrets" value="Default"/>
 		</td>
 	</tr>
         </table>

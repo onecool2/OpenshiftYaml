@@ -4,6 +4,10 @@ var pod;
 var podNum = 0;
 var containerNum=0;
 var podArray = new Array();
+var volumeMountsNum=0;
+var portsNum=0;
+var envNum=0;
+var resourcesNum=0;
 function addPOD() {
 	newpod=new POD(podNum);//init();
 	podArray[podNum] = newpod;
@@ -11,6 +15,122 @@ function addPOD() {
 	podNum++;
 	console.log(podNum);
 }
+function add_pod_spec_resource(rowIndex){
+
+//resources:limits:cpu
+
+
+
+}
+function add_pod_spec_env(){
+//env:name
+	var rowIndex = document.getElementById("spec_tr").rowIndex;
+        rowIndex=rowIndex+9+volumeMountsNum*3+portsNum*4+envNum*2;
+	var rowOfspec_container_imagePullPolicy = pod.insertRow(rowIndex + 1);
+	var cellspec_container_imagePullPolicy = rowOfspec_container_imagePullPolicy.insertCell();
+	cellspec_container_imagePullPolicy.innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-name:";
+	cellspec_container_imagePullPolicy = rowOfspec_container_imagePullPolicy.insertCell();
+	cellspec_container_imagePullPolicy.innerHTML = "<input type='text' name='container_env_name'" + containerNum +"' value = '"+containerNum+"'>";
+
+//env:value
+	var rowOfspec_container_imagePullPolicy = pod.insertRow(rowIndex + 2);
+	var cellspec_container_imagePullPolicy = rowOfspec_container_imagePullPolicy.insertCell();
+	cellspec_container_imagePullPolicy.innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value:";
+	cellspec_container_imagePullPolicy = rowOfspec_container_imagePullPolicy.insertCell();
+	cellspec_container_imagePullPolicy.innerHTML = "<input type='text' name='container_env_value'" + containerNum +"' value = '"+containerNum+"'>";
+
+}
+
+function add_pod_spec_ports(){
+//ports:name
+	var rowIndex = document.getElementById("spec_tr").rowIndex;
+        rowIndex=rowIndex+8+volumeMountsNum*3+portsNum*4;
+	console.log(rowIndex);
+	var rowOfspec_container_imagePullPolicy = pod.insertRow(rowIndex + 1);
+	var cellspec_container_imagePullPolicy = rowOfspec_container_imagePullPolicy.insertCell();
+	cellspec_container_imagePullPolicy.innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-name:";
+	cellspec_container_imagePullPolicy = rowOfspec_container_imagePullPolicy.insertCell();
+	cellspec_container_imagePullPolicy.innerHTML = "<input type='text' name='container_name'" + containerNum+"' value = '"+containerNum+"'>";
+
+//ports:containerPort
+	var rowOfspec_container_imagePullPolicy = pod.insertRow(rowIndex + 2);
+	var cellspec_container_imagePullPolicy = rowOfspec_container_imagePullPolicy.insertCell();
+	cellspec_container_imagePullPolicy.innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;containerPort:";
+	cellspec_container_imagePullPolicy = rowOfspec_container_imagePullPolicy.insertCell();
+	cellspec_container_imagePullPolicy.innerHTML = "<input type='text' name='container_ports'" + containerNum+"' value ='"+containerNum+"'>";
+
+//ports:hostPort
+	var rowOfspec_container_imagePullPolicy = pod.insertRow(rowIndex + 3);
+	var cellspec_container_imagePullPolicy = rowOfspec_container_imagePullPolicy.insertCell();
+	cellspec_container_imagePullPolicy.innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hostPort:";
+	cellspec_container_imagePullPolicy = rowOfspec_container_imagePullPolicy.insertCell();
+	cellspec_container_imagePullPolicy.innerHTML = "<input type='text' name='container_hostPort'" + containerNum+"' value = '"+containerNum+"'>";
+
+//ports:protocol
+	var rowOfspec_container_imagePullPolicy = pod.insertRow(rowIndex + 4);
+	var cellspec_container_imagePullPolicy = rowOfspec_container_imagePullPolicy.insertCell();
+	cellspec_container_imagePullPolicy.innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;protocol:";
+	cellspec_container_imagePullPolicy = rowOfspec_container_imagePullPolicy.insertCell();
+	cellspec_container_imagePullPolicy.innerHTML = "<input type='text' name='container_protocol'" + containerNum+"' value = '"+containerNum+"'>";
+	portsNum++;
+}
+
+function add_pod_spec_volumeMounts(){
+//volumeMounts:name
+	var rowIndex = document.getElementById("spec_tr").rowIndex;
+        rowIndex=rowIndex + 7 + volumeMountsNum * 3 ;
+	var rowOfspec_container_volumeMounts_name = pod.insertRow(rowIndex+1);
+	var cellspec_container_volumeMounts_name = rowOfspec_container_volumeMounts_name.insertCell();
+	cellspec_container_volumeMounts_name.innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;-name:";
+	cellspec_container_volumeMounts_name = rowOfspec_container_volumeMounts_name.insertCell();
+	cellspec_container_volumeMounts_name.innerHTML = "<input type='text' name='container_volumeMounts_name'" + containerNum+"' value = '"+containerNum+"'>";
+
+//volumeMounts:mountPath
+	var rowOfspec_container_imagePullPolicy = pod.insertRow(rowIndex + 2);
+	var cellspec_container_imagePullPolicy = rowOfspec_container_imagePullPolicy.insertCell();
+	cellspec_container_imagePullPolicy.innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mountPath:";
+	cellspec_container_imagePullPolicy = rowOfspec_container_imagePullPolicy.insertCell();
+	cellspec_container_imagePullPolicy.innerHTML = "<input type='text' name='container_volumeMount_Path'" + containerNum+"' value = '"+containerNum+"'>";
+
+//volumeMounts:readOnly
+	var rowOfspec_container_imagePullPolicy = pod.insertRow(rowIndex +3);
+	var cellspec_container_imagePullPolicy = rowOfspec_container_imagePullPolicy.insertCell();
+	cellspec_container_imagePullPolicy.innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;readOnly:";
+	cellspec_container_imagePullPolicy = rowOfspec_container_imagePullPolicy.insertCell();
+	cellspec_container_imagePullPolicy.innerHTML = "<input type='text' name='container_readOnly'" + containerNum +"' value = '"+containerNum+"'>";
+	volumeMountsNum++;
+
+
+}
+function add_spec_volume(){
+	//volumes:name
+	pod = document.getElementById("pod");
+	var rowIndex = document.getElementById("volumes_tr").rowIndex;
+	console.log(rowIndex);
+	var rowOfspec_container_imagePullPolicy = pod.insertRow(rowIndex + 1);
+	var cellspec_container_imagePullPolicy = rowOfspec_container_imagePullPolicy.insertCell();
+	cellspec_container_imagePullPolicy.innerHTML = "&nbsp;&nbsp;name:";
+	cellspec_container_imagePullPolicy = rowOfspec_container_imagePullPolicy.insertCell();
+	cellspec_container_imagePullPolicy.innerHTML = "<input type='text' name='container_spec_volume'" + containerNum+"' value = '"+containerNum+"'>";
+
+//volumes:emptyDir
+	var rowOfspec_container_imagePullPolicy = pod.insertRow(rowIndex + 2);
+	var cellspec_container_imagePullPolicy = rowOfspec_container_imagePullPolicy.insertCell();
+	cellspec_container_imagePullPolicy.innerHTML = "&nbsp;&nbsp;emptyDir:";
+	cellspec_container_imagePullPolicy = rowOfspec_container_imagePullPolicy.insertCell();
+	cellspec_container_imagePullPolicy.innerHTML = "<input type='text' name='container_emptyDir'" + containerNum+"' value = '"+containerNum+"'>";
+
+//volumes:hostPath:path
+	var rowOfspec_container_imagePullPolicy = pod.insertRow(rowIndex + 3);
+	var cellspec_container_imagePullPolicy = rowOfspec_container_imagePullPolicy.insertCell();
+	cellspec_container_imagePullPolicy.innerHTML = "&nbsp;&nbsp;hostPath:";
+	cellspec_container_imagePullPolicy = rowOfspec_container_imagePullPolicy.insertCell();
+	cellspec_container_imagePullPolicy.innerHTML = "<input type='text' name='container_hostPath'" + containerNum+"' value = '"+containerNum+"'>";
+
+
+
+}
+
 
 function add_spec_container (){
 	pod = document.getElementById("pod");
@@ -19,157 +139,82 @@ function add_spec_container (){
 //name
 	var rowOfspec_container_name = pod.insertRow(rowIndex + 1);
 	var cellspec_container_name = rowOfspec_container_name.insertCell();
-	cellspec_container_name.innerText = "-name:";
+	cellspec_container_name.innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;-name:";
 	cellspec_container_name = rowOfspec_container_name.insertCell();
 	cellspec_container_name.innerHTML = "<input type='text' name='pod_spec_container_name' + containerNum value = 'container Num'>";
 
 //image	
 	var rowOfspec_container_image = pod.insertRow(rowIndex + 2);
 	var cellspec_container_image = rowOfspec_container_image.insertCell();
-	cellspec_container_image.innerText = "image:";
+	cellspec_container_image.innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;image:";
 	cellspec_container_image = rowOfspec_container_image.insertCell();
 	cellspec_container_image.innerHTML = "<input type='text' name='pod_spec_container_image' + containerNum value = 'container Num'>";
 
 //policy
 	var rowOfspec_container_imagePullPolicy = pod.insertRow(rowIndex + 3);
 	var cellspec_container_imagePullPolicy = rowOfspec_container_imagePullPolicy.insertCell();
-	cellspec_container_imagePullPolicy.innerText = "imagePullPolicy:";
+	cellspec_container_imagePullPolicy.innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;imagePullPolicy:";
 	cellspec_container_imagePullPolicy = rowOfspec_container_imagePullPolicy.insertCell();
 	cellspec_container_imagePullPolicy.innerHTML = "<input type='text' name='pod_spec_container_imagePullPolicy' + containerNum value = 'container Num'>";
 
 //command
 	var rowOfspec_container_command = pod.insertRow(rowIndex + 4);
 	var cellspec_container_command = rowOfspec_container_command.insertCell();
-	cellspec_container_command.innerText = "command:";
+	cellspec_container_command.innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;command:";
 	cellspec_container_command = rowOfspec_container_command.insertCell();
 	cellspec_container_command.innerHTML = "<input type='text' name='pod_spec_container_imagePullPolicy' + containerNum value = 'container Num'>";
 
 //workingDir
 	var rowOfspec_container_imagePullPolicy = pod.insertRow(rowIndex + 5);
 	var cellspec_container_imagePullPolicy = rowOfspec_container_imagePullPolicy.insertCell();
-	cellspec_container_imagePullPolicy.innerText = "workingDir:";
+	cellspec_container_imagePullPolicy.innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;workingDir:";
 	cellspec_container_imagePullPolicy = rowOfspec_container_imagePullPolicy.insertCell();
 	cellspec_container_imagePullPolicy.innerHTML = "<input type='text' name='pod_spec_workingDir' + containerNum value = 'container Num'>";
 
 //volumeMounts:
 	var rowOfspec_container_volumeMounts = pod.insertRow(rowIndex + 6);
 	var cellspec_container_volumeMounts = rowOfspec_container_volumeMounts.insertCell();
-	cellspec_container_volumeMounts.innerHTML = "<tr id='volumeMounts_tr'>";
-	cellspec_container_volumeMounts.innerHTML = "<td>";
-	cellspec_container_volumeMounts.innerText = "volumeMounts:";
+	cellspec_container_volumeMounts.innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;volumeMounts:";
 	cellspec_container_volumeMounts = rowOfspec_container_volumeMounts.insertCell();
-//			cellspec_container_volumeMounts.innerHTML = "volumeMounts: <label name='pod_spec_container_volumeMounts' label/>";
+	cellspec_container_volumeMounts.innerHTML = "<input type='button' id='volumeMounts"+containerNum+"' value='add a new volumeMount' onclick='add_pod_spec_volumeMounts()'>";
 //			cellspec_container_volumeMounts.innerHTML = "<label name='pod_spec_container_volumeMounts' + containerNum value = 'container Num'>";
-		cellspec_container_volumeMounts.innerHTML = "</td>";
-	cellspec_container_volumeMounts.innerHTML = "</tr>";
 
-//volumeMounts:name
-	rowIndex = document.getElementById("volumeMounts_tr").rowIndex;
-	console.log(rowIndex);
-	var rowOfspec_container_volumeMounts_name = pod.insertRow(rowIndex + 1);
-	var cellspec_container_volumeMounts_name = rowOfspec_container_volumeMounts_name.insertCell();
-	cellspec_container_volumeMounts_name.innerText = "name:";
-	cellspec_container_volumeMounts_name = rowOfspec_container_volumeMounts_name.insertCell();
-	cellspec_container_volumeMounts_name.innerHTML = "<input type='text' name='pod_spec_container_volumeMounts_name' + containerNum value = 'container Num'>";
+//ports:
+	var rowOfspec_container_volumeMounts = pod.insertRow(rowIndex + 7);
+	var cellspec_container_volumeMounts = rowOfspec_container_volumeMounts.insertCell();
+	cellspec_container_volumeMounts.innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;ports:";
+	cellspec_container_volumeMounts = rowOfspec_container_volumeMounts.insertCell();
+	cellspec_container_volumeMounts.innerHTML = "<input type='button' value='add a new port' onclick='add_pod_spec_ports()'>";
 
-//volumeMounts:mountPath
-	var rowOfspec_container_imagePullPolicy = pod.insertRow(rowIndex + 3);
+//env:
+	var rowOfspec_container_volumeMounts = pod.insertRow(rowIndex + 8);
+	var cellspec_container_volumeMounts = rowOfspec_container_volumeMounts.insertCell();
+	cellspec_container_volumeMounts.innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;env:";
+	cellspec_container_volumeMounts = rowOfspec_container_volumeMounts.insertCell();
+	cellspec_container_volumeMounts.innerHTML = "<input type='button' value='add a new env' onclick='add_pod_spec_env()'>";
+
+//resources:
+	var rowOfspec_container_volumeMounts = pod.insertRow(rowIndex + 9);
+	var cellspec_container_volumeMounts = rowOfspec_container_volumeMounts.insertCell();
+	cellspec_container_volumeMounts.innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;resources:";
+	cellspec_container_volumeMounts = rowOfspec_container_volumeMounts.insertCell();
+	//cellspec_container_volumeMounts.innerHTML = "<input type='button' id='container"+containerNum+"' value='add a new resource' onclick='add_pod_spec_resource("+num+")'>";
+	var rowOfspec_container_imagePullPolicy = pod.insertRow(rowIndex + 10);
 	var cellspec_container_imagePullPolicy = rowOfspec_container_imagePullPolicy.insertCell();
-	cellspec_container_imagePullPolicy.innerText = "imagePullPolicy:";
-	cellspec_container_imagePullPolicy = rowOfspec_container_imagePullPolicy.insertCell();
-	cellspec_container_imagePullPolicy.innerHTML = "<input type='text' name='pod_spec_container_imagePullPolicy' + containerNum value = 'container Num'>";
-
-//volumeMounts:readOnly
-	var rowOfspec_container_imagePullPolicy = pod.insertRow(rowIndex + 3);
+	cellspec_container_imagePullPolicy.innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;limits:";
+	
+	var rowOfspec_container_imagePullPolicy = pod.insertRow(rowIndex + 11);
 	var cellspec_container_imagePullPolicy = rowOfspec_container_imagePullPolicy.insertCell();
-	cellspec_container_imagePullPolicy.innerText = "imagePullPolicy:";
+	cellspec_container_imagePullPolicy.innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cpu:";
 	cellspec_container_imagePullPolicy = rowOfspec_container_imagePullPolicy.insertCell();
-	cellspec_container_imagePullPolicy.innerHTML = "<input type='text' name='pod_spec_container_imagePullPolicy' + containerNum value = 'container Num'>";
-
-//ports:name
-	var rowOfspec_container_imagePullPolicy = pod.insertRow(rowIndex + 3);
-	var cellspec_container_imagePullPolicy = rowOfspec_container_imagePullPolicy.insertCell();
-	cellspec_container_imagePullPolicy.innerText = "imagePullPolicy:";
-	cellspec_container_imagePullPolicy = rowOfspec_container_imagePullPolicy.insertCell();
-	cellspec_container_imagePullPolicy.innerHTML = "<input type='text' name='pod_spec_container_imagePullPolicy' + containerNum value = 'container Num'>";
-
-//ports:containerPort
-	var rowOfspec_container_imagePullPolicy = pod.insertRow(rowIndex + 3);
-	var cellspec_container_imagePullPolicy = rowOfspec_container_imagePullPolicy.insertCell();
-	cellspec_container_imagePullPolicy.innerText = "imagePullPolicy:";
-	cellspec_container_imagePullPolicy = rowOfspec_container_imagePullPolicy.insertCell();
-	cellspec_container_imagePullPolicy.innerHTML = "<input type='text' name='pod_spec_container_imagePullPolicy' + containerNum value = 'container Num'>";
-
-//ports:hostPort
-	var rowOfspec_container_imagePullPolicy = pod.insertRow(rowIndex + 3);
-	var cellspec_container_imagePullPolicy = rowOfspec_container_imagePullPolicy.insertCell();
-	cellspec_container_imagePullPolicy.innerText = "imagePullPolicy:";
-	cellspec_container_imagePullPolicy = rowOfspec_container_imagePullPolicy.insertCell();
-	cellspec_container_imagePullPolicy.innerHTML = "<input type='text' name='pod_spec_container_imagePullPolicy' + containerNum value = 'container Num'>";
-
-//ports:protocol
-	var rowOfspec_container_imagePullPolicy = pod.insertRow(rowIndex + 3);
-	var cellspec_container_imagePullPolicy = rowOfspec_container_imagePullPolicy.insertCell();
-	cellspec_container_imagePullPolicy.innerText = "imagePullPolicy:";
-	cellspec_container_imagePullPolicy = rowOfspec_container_imagePullPolicy.insertCell();
-	cellspec_container_imagePullPolicy.innerHTML = "<input type='text' name='pod_spec_container_imagePullPolicy' + containerNum value = 'container Num'>";
-
-
-//env:name
-	var rowOfspec_container_imagePullPolicy = pod.insertRow(rowIndex + 3);
-	var cellspec_container_imagePullPolicy = rowOfspec_container_imagePullPolicy.insertCell();
-	cellspec_container_imagePullPolicy.innerText = "imagePullPolicy:";
-	cellspec_container_imagePullPolicy = rowOfspec_container_imagePullPolicy.insertCell();
-	cellspec_container_imagePullPolicy.innerHTML = "<input type='text' name='pod_spec_container_imagePullPolicy' + containerNum value = 'container Num'>";
-
-//env:value
-	var rowOfspec_container_imagePullPolicy = pod.insertRow(rowIndex + 3);
-	var cellspec_container_imagePullPolicy = rowOfspec_container_imagePullPolicy.insertCell();
-	cellspec_container_imagePullPolicy.innerText = "imagePullPolicy:";
-	cellspec_container_imagePullPolicy = rowOfspec_container_imagePullPolicy.insertCell();
-	cellspec_container_imagePullPolicy.innerHTML = "<input type='text' name='pod_spec_container_imagePullPolicy' + containerNum value = 'container Num'>";
-
-//resources:limits:cpu
-	var rowOfspec_container_imagePullPolicy = pod.insertRow(rowIndex + 3);
-	var cellspec_container_imagePullPolicy = rowOfspec_container_imagePullPolicy.insertCell();
-	cellspec_container_imagePullPolicy.innerText = "imagePullPolicy:";
-	cellspec_container_imagePullPolicy = rowOfspec_container_imagePullPolicy.insertCell();
-	cellspec_container_imagePullPolicy.innerHTML = "<input type='text' name='pod_spec_container_imagePullPolicy' + containerNum value = 'container Num'>";
+	cellspec_container_imagePullPolicy.innerHTML = "<input type='text' name='resources_cpu" + containerNum + "' value ='" + containerNum + "'>";
 
 //resources:limits:memory
-	var rowOfspec_container_imagePullPolicy = pod.insertRow(rowIndex + 3);
+	var rowOfspec_container_imagePullPolicy = pod.insertRow(rowIndex + 12);
 	var cellspec_container_imagePullPolicy = rowOfspec_container_imagePullPolicy.insertCell();
-	cellspec_container_imagePullPolicy.innerText = "imagePullPolicy:";
+	cellspec_container_imagePullPolicy.innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;memory:";
 	cellspec_container_imagePullPolicy = rowOfspec_container_imagePullPolicy.insertCell();
-	cellspec_container_imagePullPolicy.innerHTML = "<input type='text' name='pod_spec_container_imagePullPolicy' + containerNum value = 'container Num'>";
-
-
-//volumes:name
-	var rowOfspec_container_imagePullPolicy = pod.insertRow(rowIndex + 3);
-	var cellspec_container_imagePullPolicy = rowOfspec_container_imagePullPolicy.insertCell();
-	cellspec_container_imagePullPolicy.innerText = "imagePullPolicy:";
-	cellspec_container_imagePullPolicy = rowOfspec_container_imagePullPolicy.insertCell();
-	cellspec_container_imagePullPolicy.innerHTML = "<input type='text' name='pod_spec_container_imagePullPolicy' + containerNum value = 'container Num'>";
-
-//volumes:emptyDir
-	var rowOfspec_container_imagePullPolicy = pod.insertRow(rowIndex + 3);
-	var cellspec_container_imagePullPolicy = rowOfspec_container_imagePullPolicy.insertCell();
-	cellspec_container_imagePullPolicy.innerText = "imagePullPolicy:";
-	cellspec_container_imagePullPolicy = rowOfspec_container_imagePullPolicy.insertCell();
-	cellspec_container_imagePullPolicy.innerHTML = "<input type='text' name='pod_spec_container_imagePullPolicy' + containerNum value = 'container Num'>";
-
-//volumes:hostPath:path
-	var rowOfspec_container_imagePullPolicy = pod.insertRow(rowIndex + 3);
-	var cellspec_container_imagePullPolicy = rowOfspec_container_imagePullPolicy.insertCell();
-	cellspec_container_imagePullPolicy.innerText = "imagePullPolicy:";
-	cellspec_container_imagePullPolicy = rowOfspec_container_imagePullPolicy.insertCell();
-	cellspec_container_imagePullPolicy.innerHTML = "<input type='text' name='pod_spec_container_imagePullPolicy' + containerNum value = 'container Num'>";
-
-
-
-
-
-
+	cellspec_container_imagePullPolicy.innerHTML = "<input type='text' name='resources_memory" + containerNum + "' value ='" + containerNum + "'>";
 
 	containerNum++;
 }
@@ -180,7 +225,7 @@ function add_metadata_labels_name (){
 	console.log(rowIndex);
 	var rowOfmeta_label_name = pod.insertRow(rowIndex + 1);
 	var cellmeta_label_name = rowOfmeta_label_name.insertCell(0);
-	cellmeta_label_name.innerText = "-name:";
+	cellmeta_label_name.innerHTML = "&nbsp;&nbsp;&nbsp&nbsp;-name:";
 	cellmeta_label_name = rowOfmeta_label_name.insertCell(1);
 	cellmeta_label_name.innerHTML = "<input type='text' name='pod_metadata_labels_name' + podMetaLabelNum value = 'podMetaLabelNum1'>";
 	podMetaLabelNum++;
@@ -192,7 +237,7 @@ function add_metadata_annotations_name (){
 	console.log(rowIndex);
 	var rowOfmeta_annotations_name = pod.insertRow(rowIndex + 1);
 	var cellmeta_annotations_name = rowOfmeta_annotations_name.insertCell();
-	cellmeta_annotations_name.innerText = "-name:";
+	cellmeta_annotations_name.innerHTML = "&nbsp;&nbsp;&nbsp&nbsp;-name:";
 	cellmeta_annotations_name = rowOfmeta_annotations_name.insertCell();
 	cellmeta_annotations_name.innerHTML = "<input type='text' name='pod_metadata_annotations_name' + podNum value = 'new'>";
 }

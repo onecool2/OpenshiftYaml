@@ -47,54 +47,6 @@
         	metadata: <label name="metadata" label/> 	
 		</td>
         </tr>
-        <tr>
-		<td>
-        	name: <input type="text" name="metadata_name" value="PodName"/>
-		</td>
-        </tr>
-        <tr>
-		<td>
-        	namespace: <input type="text" name="metadata_name" value="Default"/>
-		</td>
-        </tr>
-        <tr id="metadata_labels_tr">
-		<td>
-        	labels: <label id="metadata_labels"  label/> 
-		<input type="button" value="add a new anotations name" onclick="add_metadata_labels_name()" />
-		</td>
-        </tr>
-        <tr id="metadata_annotations_tr"> 
-		<td>
-       		 annotations: <label name="annotations" label/>
-		<input type="button" value="add a new anotations name" onclick="add_metadata_annotations_name()" />
-		</td>
-        </tr>
-	<tr id="spec_tr">
-		<td>
-	spec: <label name="spec" label/>
-		</td>
-        </tr>
-	<tr id="spec_containers_tr">
-		<td>
-		containers: <label name="spec_containers" label/>
-		<input type="button" value="add a new container" onclick="add_spec_container()" />
-		</td>
-	</tr>
-	<tr>
-		<td>
-	env: <label name="env" label/>
-		</td>
-	</tr>
-	<tr>
-		<td>
-	resources: <label name="resources" label/>
-		</td>
-	</tr>
-	<tr>
-		<td>
-	volumes:: <label name="volumes" label/>
-		</td>
-	</tr>
 	<tr>
 		<td>
        	restartPolicy: <input type="text" name="restartPolicy" value="Default"/>
@@ -115,6 +67,47 @@
        	imagePullSecrets: <input type="text" name="imagePullSecrets" value="Default"/>
 		</td>
 	</tr>
+
+        <tr>
+		<td>
+        	&nbsp;&nbsp;name: <input type="text" name="metadata_name" value="PodName"/>
+		</td>
+        </tr>
+        <tr>
+		<td>
+        	&nbsp;&nbsp;namespace: <input type="text" name="metadata_name" value="Default"/>
+		</td>
+        </tr>
+        <tr id="metadata_labels_tr">
+		<td>
+        	&nbsp;&nbsp;labels: <label id="metadata_labels"  label/> 
+		<input type="button" value="add a new anotations name" onclick="add_metadata_labels_name()" />
+		</td>
+        </tr>
+        <tr id="metadata_annotations_tr"> 
+		<td>
+       		 &nbsp;&nbsp;annotations: <label name="annotations" label/>
+		<input type="button" value="add a new anotations name" onclick="add_metadata_annotations_name()" />
+		</td>
+        </tr>
+	<tr id="volumes_tr">
+		<td>
+	volumes: <label name="volumes" label/>
+		<input type="button" value="add a new volume" onclick="add_spec_volume()" />
+		</td>
+	</tr>
+	<tr id="spec_tr">
+		<td>
+		spec: <label name="spec" label/>
+		</td>
+        </tr>
+	<tr id="spec_containers_tr">
+		<td>
+		&nbsp;&nbsp;containers: <label name="spec_containers" label/>
+		<input type="button" value="add a new container" onclick="add_spec_container()" />
+		</td>
+	</tr>
+
         </table>
         <br><br> 
         <br>
